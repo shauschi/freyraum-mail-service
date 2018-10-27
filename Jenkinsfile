@@ -90,10 +90,10 @@ pipeline {
 
   post {
     success {
-      slackSend(color: "#BDFFC3", message: "${ENV_NAME} created new docker image successfully: - ${DOCKER_IMAGE}")
+      slackSend(color: "#BDFFC3", message: "${ENV_NAME} created new docker image successfully: ${DOCKER_IMAGE}")
     }
     failure {
-      slackSend(color: "#FF9FA1", message: "${ENV_NAME} build failed - ${env.BRANCH} ${env.BUILD_NUMBER}")
+      slackSend(color: "#FF9FA1", message: "${ENV_NAME} (${DOCKER_IMAGE}) build failed - ${env.BRANCH} ${env.BUILD_NUMBER}")
     }
   }
 }
