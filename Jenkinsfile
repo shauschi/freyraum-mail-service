@@ -32,7 +32,9 @@ def mapBranchToDockerImage(branch) {
 }
 
 pipeline {
-  agent none
+  agent {
+    docker { image 'openjdk:8-jdk-alpine' }
+  }
   options {
     skipDefaultCheckout()
   }
@@ -44,48 +46,36 @@ pipeline {
   }
   stages {
     stage('checkout') {
-      agent any
       steps {
         checkout scm
       }
     }
 
     stage('build application') {
-      agent {
-        docker { image 'openjdk:8-jdk-alpine' }
-      }
       steps {
         sh './gradlew clean build'
       }
     }
 
     stage('test application') {
-      agent {
-        docker { image 'openjdk:8-jdk-alpine' }
-      }
       steps {
         sh './gradlew test'
       }
     }
 
     stage('build jar') {
-      agent {
-        docker { image 'openjdk:8-jdk-alpine' }
-      }
       steps {
         sh './gradlew bootJar'
       }
     }
 
     stage('containerize') {
-      agent any
       steps {
         sh 'docker build . -f Dockerfile -t ${APP_NAME}'
         sh 'docker tag ${APP_NAME} localhost:5000/${DOCKER_IMAGE}'
         sh 'docker push localhost:5000/${DOCKER_IMAGE}'
       }
     }
-
   }
 
   post {
