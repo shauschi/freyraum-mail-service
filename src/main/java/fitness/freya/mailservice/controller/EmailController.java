@@ -1,10 +1,12 @@
 package fitness.freya.mailservice.controller;
 
-import fitness.freya.mailservice.model.CreateEmailEvent;
+import fitness.freya.mailservice.model.CreateEmail;
 import fitness.freya.mailservice.model.MessageDto;
 import fitness.freya.mailservice.service.EmailService;
 import javax.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,9 +23,17 @@ public class EmailController {
     this.emailService = emailService;
   }
 
-  @PostMapping("/create-email-event")
-  public MessageDto createEmailEvent(@RequestBody final CreateEmailEvent createEmailEvent) throws MessagingException {
-    emailService.sendMail(createEmailEvent);
+  @ExceptionHandler(Exception.class)
+  public ResponseEntity<MessageDto> handleException(final Exception exception) {
+    return ResponseEntity
+        .badRequest()
+        .body(new MessageDto(exception.getMessage()));
+  }
+
+  @PostMapping
+  public MessageDto createEmail(
+      @RequestBody final CreateEmail createEmail) throws MessagingException {
+    emailService.sendMail(createEmail);
     return new MessageDto("Deine Mail wird verschickt.");
   }
 
