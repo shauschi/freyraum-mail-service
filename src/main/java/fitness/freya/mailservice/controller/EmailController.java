@@ -4,6 +4,7 @@ import fitness.freya.mailservice.model.CreateEmail;
 import fitness.freya.mailservice.model.MessageDto;
 import fitness.freya.mailservice.service.EmailService;
 import javax.mail.MessagingException;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -32,7 +33,7 @@ public class EmailController {
 
   @PostMapping
   public MessageDto createEmail(
-      @RequestBody final CreateEmail createEmail) throws MessagingException {
+      @RequestBody @Valid final CreateEmail createEmail) throws MessagingException {
     emailService.sendMail(createEmail);
     return new MessageDto("Deine Mail wird verschickt.");
   }
