@@ -1,7 +1,7 @@
 package fitness.freya.mailservice.service;
 
 import fitness.freya.mailservice.exception.ResourceLoadingException;
-import fitness.freya.mailservice.model.CreateEmailEvent;
+import fitness.freya.mailservice.model.CreateEmail;
 import fitness.freya.mailservice.model.EmailTemplate;
 import java.io.File;
 import java.io.IOException;
@@ -79,14 +79,12 @@ public class EmailService {
     this.templateService = templateService;
   }
 
-  public void sendMail(final CreateEmailEvent createMail) throws MessagingException {
-
+  public void sendMail(final CreateEmail createMail) throws MessagingException {
     final MimeMessage mail = getMimeMessage(createMail);
-
     sendMail(mail);
   }
 
-  private MimeMessage getMimeMessage(final CreateEmailEvent createMail) throws MessagingException {
+  private MimeMessage getMimeMessage(final CreateEmail createMail) throws MessagingException {
     LOGGER.info("Create mime message for {} - {}", createMail.getTemplateId(), createMail.getParameters());
     final Session session = Session.getInstance(props, auth);
     final MimeMessage mail = new MimeMessage(session);
