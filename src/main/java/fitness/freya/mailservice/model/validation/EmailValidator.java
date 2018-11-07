@@ -4,7 +4,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import org.apache.commons.lang3.StringUtils;
 
 public class EmailValidator
     implements ConstraintValidator<ValidEmail, String> {
@@ -15,7 +14,9 @@ public class EmailValidator
 
   @Override
   public boolean isValid(final String email, final ConstraintValidatorContext context) {
-    return StringUtils.isBlank(email) || validateEmail(email);
+    return email == null
+        || "".equals(email)
+        || validateEmail(email);
   }
 
   static boolean validateEmail(final String email) {
