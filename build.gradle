@@ -32,7 +32,6 @@ dependencies {
 	compileOnly     group: 'org.projectlombok', name: 'lombok', version: '1.16.18'
 	testCompileOnly group: 'org.projectlombok', name: 'lombok', version: '1.16.18'
 
-  implementation group: 'org.apache.commons', name: 'commons-lang3'
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail'
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web'
 
