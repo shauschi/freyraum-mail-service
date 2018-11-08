@@ -189,15 +189,15 @@ public class EmailService {
       final Address[] originalCc = email.getRecipients(Message.RecipientType.CC);
       final Address[] originalBcc = email.getRecipients(Message.RecipientType.BCC);
       final String additionalText =
-          "<p>"
+          "<div><p>"
               + "This mail was send from a development environment and was ment to be send"
               + "</p>"
               + getReceiverBlock("to", originalTo)
               + getReceiverBlock("cc", originalCc)
               + getReceiverBlock("bcc", originalBcc)
-              + "<p><b>--- ORIGINAL MESSAGE ---</b></p>";
+              + "<p><b>--- ORIGINAL MESSAGE ---</b></p></div>";
       final String newMailText = message.replaceFirst(
-          "<body>", "<body>" + additionalText + "$1");
+          "<body>", "<body>" + additionalText);
 
       final InternetAddress[] addresses = {new InternetAddress(developReceiver)};
       email.setRecipients(Message.RecipientType.TO, addresses);
