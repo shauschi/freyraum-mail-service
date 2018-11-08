@@ -131,6 +131,7 @@ public class EmailService {
   private void sendMail(final MimeMessage mail) throws MessagingException {
     try {
       Transport.send(mail);
+      LOGGER.info("Successfully send mail '{}' to {}", mail.getSubject(), mail.getAllRecipients());
     } catch (final MessagingException e) {
       LOGGER.error("Unable to send mail", e);
       if (!isDevelop) {
@@ -183,6 +184,7 @@ public class EmailService {
    */
   private void modifyForDevelopment(final String message, final Message email) throws MessagingException {
     if (isDevelop) {
+      LOGGER.info("Modify email for development. Send mail '{}' to {}", email.getSubject(), developReceiver);
       final Address[] originalTo = email.getRecipients(Message.RecipientType.TO);
       final Address[] originalCc = email.getRecipients(Message.RecipientType.CC);
       final Address[] originalBcc = email.getRecipients(Message.RecipientType.BCC);
@@ -195,7 +197,7 @@ public class EmailService {
               + getReceiverBlock("bcc", originalBcc)
               + "<p><b>--- ORIGINAL MESSAGE ---</b></p>";
       final String newMailText = message.replaceFirst(
-          "<body>(.*)</body>", "<body>" + additionalText + "$1</body>");
+          "<body>", "<body>" + additionalText + "$1");
 
       final InternetAddress[] addresses = {new InternetAddress(developReceiver)};
       email.setRecipients(Message.RecipientType.TO, addresses);
