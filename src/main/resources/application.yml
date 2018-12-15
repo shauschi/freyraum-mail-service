@@ -7,4 +7,5 @@ mail:
   template:
     DEFAULT: E-Mail von freya.fitness
     CONTACT: Kontaktanfrage freya.fitness
+    ACCOUNT_CREATED: Neuer Account auf freya.fitness
     RESET_PASSWORD: Passwort für freya.fitness zurücksetzen
