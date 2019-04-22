@@ -1,6 +1,10 @@
 server:
   port: 7700
 mail:
+  host: ${MAIL_HOST}
+  port: ${MAIL_PORT}
+  user: ${MAIL_USER}
+  password: ${MAIL_PASSWORD}
   sender: FreyRaum <admin@freya.fitness>
   develop:
     receiver: develop@freya.fitness

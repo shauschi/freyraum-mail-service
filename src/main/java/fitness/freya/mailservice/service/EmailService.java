@@ -50,10 +50,10 @@ public class EmailService {
   public EmailService(
       @Value("${DEVELOPMENT:true}") final boolean isDevelopment,
       @Value("${mail.develop.receiver}") final String developReceiver,
-      @Value("${MAIL_HOST}") final String host,
-      @Value("${MAIL_PORT}") final Integer port,
-      @Value("${MAIL_USR}") final String username,
-      @Value("${MAIL_PSW}") final String password,
+      @Value("${mail.host}") final String host,
+      @Value("${mail.port}") final Integer port,
+      @Value("${mail.user}") final String username,
+      @Value("${mail.password}") final String password,
       @Value("${mail.sender}") final String sender,
       final ResourceService resourceService,
       final TemplateService templateService) {
