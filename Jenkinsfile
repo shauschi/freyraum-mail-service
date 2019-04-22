@@ -26,6 +26,7 @@ pipeline {
     stage('build release candidate') {
       steps {
         sh './gradlew bootJar'
+        sh 'docker build . -f Dockerfile -t ${APP_NAME}'
         sh 'docker tag ${APP_NAME} ${DOCKER_REGISTRY}/${APP_NAME}:${RC_TAG}'
         sh 'docker push ${DOCKER_REGISTRY}/${APP_NAME}:${RC_TAG}'
       }
