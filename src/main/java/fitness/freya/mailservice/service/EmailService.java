@@ -48,7 +48,7 @@ public class EmailService {
 
   @Autowired
   public EmailService(
-      @Value("${DEVELOPMENT:true}") final boolean isDevelopment,
+      @Value("${development:true}") final boolean isDevelopment,
       @Value("${mail.develop.receiver}") final String developReceiver,
       @Value("${mail.host}") final String host,
       @Value("${mail.port}") final Integer port,

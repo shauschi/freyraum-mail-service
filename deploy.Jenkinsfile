@@ -11,6 +11,7 @@ pipeline {
   }
   environment {
     DOCKER_REGISTRY = "localhost:5000"
+    SPRING_PROFILES_ACTIVE = "prod"
     MAIL_HOST = "smtp.1und1.de"
     MAIL_PORT = "587"
     MAIL = credentials('mail')
@@ -36,6 +37,7 @@ pipeline {
             -p ${APP_PORT}:7700 \
             --restart=always \
             --name ${APP_NAME} \
+            -e SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE} \
             -e MAIL_HOST=${MAIL_HOST} \
             -e MAIL_PORT=${MAIL_PORT} \
             -e MAIL_PASSWORD=${MAIL_PSW} \
