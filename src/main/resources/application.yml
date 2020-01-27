@@ -12,6 +12,7 @@ mail:
     receiver: develop@freya.fitness
   template:
     DEFAULT: E-Mail von freya.fitness
-    CONTACT: Kontaktanfrage freya.fitness
     ACCOUNT_CREATED: Neuer Account auf freya.fitness
+    CANCELLATION: $user_firstname hat sich bei $course_type abgemeldet
+    CONTACT: Kontaktanfrage freya.fitness
     RESET_PASSWORD: Passwort für freya.fitness zurücksetzen

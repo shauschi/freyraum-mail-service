@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>Kursabsage: $subject</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <style>
+            html,
+            body {
+                font-size: 0.875rem;
+                font-weight: 400;
+                font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+                line-height: 1.46429em;
+            }
+
+            body {
+                margin: 0 auto;
+                max-width: 450px;
+            }
+
+            .header {
+                margin-top: 16px;
+                margin-bottom: 16px;
+                padding: 8px;
+                height: 56px;
+                background-color: #00B0DB;
+                color: #FFFFFF;
+                font-size: xx-large;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <img src="cid:freyraum" alt="FreyRaum"/>
+        </div>
+        <p>$user_firstname $user_lastname hat sich für den Kurs <b>$course_type</b> am $course_start_date <b>$course_start_time</b> Uhr abgemeldet:</p>
+        <p>"$reason"</p>
+    </body>
+</html>
+
+
+
